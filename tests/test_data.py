@@ -34,6 +34,9 @@ def test_dataset_split_sizes():
             "val_size": 5000,
             "seed": 42,
         },
+        "experiment": {
+        "seed": 42,
+        },
         "augmentation": {
             "random_horizontal_flip": True,
         },
@@ -74,6 +77,9 @@ def test_dataset_split_disjoint():
             "root": "data",
             "val_size": 5000,
             "seed": 42,
+        },
+        "experiment": {
+        "seed": 42,
         },
     }
 
@@ -127,6 +133,9 @@ def test_split_is_stratified():
             "val_size": 5000,
             "seed": 42,
         },
+        "experiment": {
+        "seed": 42,
+        },
     }
 
 
@@ -171,6 +180,9 @@ def test_transform_output_shape():
             "root": "data",
             "val_size": 5000,
             "seed": 42,
+        },
+        "experiment": {
+        "seed": 42,
         },
     }
 

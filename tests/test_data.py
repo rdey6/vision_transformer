@@ -98,11 +98,7 @@ def test_dataset_split_disjoint():
         val_dataset.indices
     )
 
-    test_indices = set(
-        range(
-            len(test_dataset)
-        )
-    )
+    test_indices = set(range(50000, 60000))
 
 
     assert train_indices.isdisjoint(

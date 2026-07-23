@@ -70,7 +70,7 @@ def test_dataset_split_disjoint():
     """
 
     config = {
-        "data": {
+        "dataset": {
             "root": "data",
             "val_size": 5000,
             "seed": 42,
@@ -122,7 +122,7 @@ def test_split_is_stratified():
     """
 
     config = {
-        "data": {
+        "dataset": {
             "root": "data",
             "val_size": 5000,
             "seed": 42,
@@ -167,7 +167,7 @@ def test_transform_output_shape():
     """
 
     config = {
-        "data": {
+        "dataset": {
             "root": "data",
             "val_size": 5000,
             "seed": 42,

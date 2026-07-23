@@ -33,8 +33,9 @@ def get_test_config():
             "image_size": 32,
         },
         "augmentation": {
-            "random_horizontal_flip": True,
             "random_crop": True,
+            "crop_padding": 4,
+            "random_horizontal_flip": True,
             "color_jitter": True,
             "random_erasing": True,
         },

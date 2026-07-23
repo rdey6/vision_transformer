@@ -35,7 +35,7 @@ def get_test_config():
         "augmentation": {
             "random_crop": True,
             "crop_padding": 4,
-            "random_horizontal_flip": True,
+            "horizontal_flip": True,
             "color_jitter": True,
             "random_erasing": True,
         },

@@ -1,0 +1,80 @@
+# ==========================================================
+# Swin Transformer Tiny - CIFAR100
+# Primary Model
+# ==========================================================
+
+experiment:
+  name: swin_transformer
+  seed: 42
+  save_dir: checkpoints/swin
+
+
+dataset:
+  name: CIFAR100
+  root: data
+  num_classes: 100
+
+
+input:
+  image_size: 32
+  patch_size: 2
+  in_channels: 3
+
+
+augmentation:
+  horizontal_flip: true
+  random_crop: true
+  crop_padding: 4
+  color_jitter: true
+  random_erasing: true
+
+
+normalization:
+  mean:
+    - 0.5071
+    - 0.4867
+    - 0.4408
+
+  std:
+    - 0.2675
+    - 0.2565
+    - 0.2761
+
+
+model:
+  architecture: swin_t
+
+  # Swin-T default embedding dimension
+  embed_dim: 96
+
+
+training:
+  epochs: 200
+
+  batch_size: 128
+
+  optimizer: AdamW
+
+  learning_rate: 0.0005
+
+  weight_decay: 0.05
+
+  scheduler: cosine
+
+  warmup_epochs: 10
+
+  gradient_clip: 1.0
+
+  label_smoothing: 0.1
+
+  mixed_precision: true
+
+
+evaluation:
+  checkpoint_metric: val_accuracy
+
+
+logging:
+  use_wandb: true
+  project: cifar100-transformers
+  log_interval: 50

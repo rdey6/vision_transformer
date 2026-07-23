@@ -1,0 +1,86 @@
+# ==========================================================
+# Vision Transformer Baseline - CIFAR100
+# Parameter Matched with Swin-T
+# ==========================================================
+
+experiment:
+  name: vision_transformer
+  seed: 42
+  save_dir: checkpoints/vit
+
+
+dataset:
+  name: CIFAR100
+  root: data
+  num_classes: 100
+
+
+input:
+  image_size: 32
+  patch_size: 4
+  in_channels: 3
+
+
+augmentation:
+  horizontal_flip: true
+  random_crop: true
+  crop_padding: 4
+  color_jitter: true
+  random_erasing: true
+
+
+normalization:
+  mean:
+    - 0.5071
+    - 0.4867
+    - 0.4408
+
+  std:
+    - 0.2675
+    - 0.2565
+    - 0.2761
+
+
+model:
+  architecture: vit
+
+  # Parameter-matched ViT
+  embed_dim: 384
+
+  depth: 8
+
+  num_heads: 6
+
+  mlp_dim: 1536
+
+
+training:
+  epochs: 200
+
+  batch_size: 128
+
+  optimizer: AdamW
+
+  learning_rate: 0.0005
+
+  weight_decay: 0.05
+
+  scheduler: cosine
+
+  warmup_epochs: 10
+
+  gradient_clip: 1.0
+
+  label_smoothing: 0.1
+
+  mixed_precision: true
+
+
+evaluation:
+  checkpoint_metric: val_accuracy
+
+
+logging:
+  use_wandb: true
+  project: cifar100-transformers
+  log_interval: 50

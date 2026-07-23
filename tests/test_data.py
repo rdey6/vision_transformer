@@ -28,7 +28,7 @@ def test_dataset_split_sizes():
     """
 
     config = {
-        "data": {
+        "dataset": {
             "root": "data",
             "num_classes": 100,
             "val_size": 5000,

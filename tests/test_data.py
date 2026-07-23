@@ -16,29 +16,27 @@ from src.data import (
     get_class_distribution,
 )
 
-
-def test_dataset_split_sizes():
+def get_test_config():
     """
-    Verify train/validation/test sizes.
-
-    Expected:
-    - Train: 45000
-    - Validation: 5000
-    - Test: 10000
+    Minimal configuration matching project YAML structure.
     """
-
-    config = {
+    return {
+        "experiment": {
+            "seed": 42,
+        },
         "dataset": {
             "root": "data",
             "num_classes": 100,
             "val_size": 5000,
-            "seed": 42,
         },
-        "experiment": {
-        "seed": 42,
+        "input": {
+            "image_size": 32,
         },
         "augmentation": {
             "random_horizontal_flip": True,
+            "random_crop": True,
+            "color_jitter": True,
+            "random_erasing": True,
         },
         "normalization": {
             "mean": [
@@ -53,6 +51,18 @@ def test_dataset_split_sizes():
             ],
         },
     }
+
+def test_dataset_split_sizes():
+    """
+    Verify train/validation/test sizes.
+
+    Expected:
+    - Train: 45000
+    - Validation: 5000
+    - Test: 10000
+    """
+
+    config = get_test_config()
 
 
     train_dataset, val_dataset, test_dataset = (
@@ -72,17 +82,7 @@ def test_dataset_split_disjoint():
     Verify no samples overlap between splits.
     """
 
-    config = {
-        "dataset": {
-            "root": "data",
-            "val_size": 5000,
-            "seed": 42,
-        },
-        "experiment": {
-        "seed": 42,
-        },
-    }
-
+    config = get_test_config()
 
     train_dataset, val_dataset, test_dataset = (
         build_datasets(config)
@@ -127,17 +127,7 @@ def test_split_is_stratified():
     - 500 images/class in training
     """
 
-    config = {
-        "dataset": {
-            "root": "data",
-            "val_size": 5000,
-            "seed": 42,
-        },
-        "experiment": {
-        "seed": 42,
-        },
-    }
-
+    config = get_test_config()
 
     train_dataset, val_dataset, _ = (
         build_datasets(config)
@@ -175,17 +165,7 @@ def test_transform_output_shape():
     compatible with patch embedding.
     """
 
-    config = {
-        "dataset": {
-            "root": "data",
-            "val_size": 5000,
-            "seed": 42,
-        },
-        "experiment": {
-        "seed": 42,
-        },
-    }
-
+    config = get_test_config()
 
     train_dataset, _, _ = (
         build_datasets(config)
